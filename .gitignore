@@ -1,0 +1,7 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/URL-Shortner/.vs/URL-Shortner
+/URL-Shortner/URL-Shortner/Properties/PublishProfiles/url-shortner-aka - Zip Deploy.pubxml
