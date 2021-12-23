@@ -31,6 +31,7 @@ namespace URL_Shortner
             [Table("DecodedURLs", "URL", "{url}", Connection = "AzureWebJobsStorage")] URLObject uRLObject,
             ILogger log, string url)
         {
+            url = url.ToLower();
             log.LogInformation("Decoding following url: " + url);
 
             if (uRLObject != null)
@@ -60,7 +61,7 @@ namespace URL_Shortner
                     log.LogInformation("Adding following url: " + input.decodedUrl);
                     var uRLObject = new URLObject();
                     uRLObject.PartitionKey = "URL";
-                    uRLObject.RowKey = input.encodedUrl;
+                    uRLObject.RowKey = input.encodedUrl.ToLower();
                     uRLObject.DecodedUrl = input.decodedUrl;
                     await urlTable.AddAsync(uRLObject);
                     return new OkObjectResult(uRLObject);
