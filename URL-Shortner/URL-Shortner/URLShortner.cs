@@ -25,6 +25,14 @@ namespace URL_Shortner
 
     public static class URLShortner
     {
+        [FunctionName("default")]
+        public static async Task<IActionResult> Default(
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)] HttpRequest req,
+            ILogger log)
+        {
+            return new RedirectResult("https://deepmehta.co.in", true);
+        }
+
         [FunctionName("urlShortner")]
         public static async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "{url}")] HttpRequest req,
@@ -40,7 +48,7 @@ namespace URL_Shortner
             }
             else
             {
-                return new NotFoundResult();
+                return new RedirectResult("https://deepmehta.co.in", true);
             }
         }
 
